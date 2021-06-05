@@ -1,39 +1,48 @@
 <template>
-    <div class="sidebar">
-        <v-btn block>
-    Block Button
-  </v-btn>
-       <ul>
-           <li><i class="fas fa-home fa-2x"></i><span>Home</span></li>
-           <li><i class="fas fa-newspaper fa-2x"></i><span>News</span></li>
-           <li><i class="fas fa-photo-video fa-2x"></i><span>Media</span></li>
-           <li><i class="fas fa-poll fa-2x"></i><span>Polls</span></li>
-       </ul>
-    </div>
+  <v-card
+    class="mx-auto"
+    height="100%"
+    width="300"
+  >
+    <v-navigation-drawer
+      absolute
+      dark
+      src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
+      width="100%"
+      permanent
+      height="100%"
+    >
+      <v-list>
+        <v-list-item
+          v-for="([icon, text], i) in items"
+          :key="i"
+          link
+        >
+          <v-list-item-icon>
+            <v-icon>{{ icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ text }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+  </v-card>
 </template>
 
 <script>
-export default {
-    
-}
+ export default {
+    data: () => ({
+      items: [
+        ['mdi-email', 'News'],
+        ['mdi-account-supervisor-circle', 'Media'],
+        ['mdi-clock-start', 'Link-hunt'],
+      ],
+    }),
+  }
 </script>
 
 <style scoped>
-.sidebar ul{
-    list-style: none;
-    padding-left: 0;
-}
-.sidebar ul li{
-    padding: 10px;
-    text-align: left;
-}
-.sidebar ul li i{
-    padding-right: 10px;
-    height: 36px;
-    width: 50px;
-}
-.sidebar ul li span{
-    font-size: 16px;
-    font-weight: 700;;
-}
+
 </style>

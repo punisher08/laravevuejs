@@ -16,6 +16,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -24,7 +25,7 @@
 <body>
     <div id="app">
    
-        <nav class="navbar navbar-expand-md navbar-light bg-dark shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -78,9 +79,17 @@
             </div>
         </nav>
 
-        <main class="pb-4 d-flex">
+        <main class="d-flex">
             @yield('content')
         </main>
+        @if (Auth::check())
+        <footer class="footer">
+            <footer-component></footer-component>
+        </footer>
+        @endif
+
+        
+        
     </div>
 </body>
 </html>

@@ -29,6 +29,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('home-component', require('./components/Home.vue').default);
 Vue.component('news-component', require('./components/newscomponent.vue').default);
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
+Vue.component('footer-component', require('./components/Footer.vue').default);
 
 
 

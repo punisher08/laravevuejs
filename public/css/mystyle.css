@@ -1,6 +1,6 @@
 .sidebar-section{
-    width: auto;
-    box-shadow: grey;
-    box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
-    background: #e5e5e5;
+    padding: 0;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    min-height: 600px;
 }
