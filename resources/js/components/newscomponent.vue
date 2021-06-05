@@ -1,7 +1,7 @@
 <template>
-  <div class="first-component">
-  <h1>First Component</h1>
-  <ul>
+  <div class="news-component">
+  <h1>Crypto News</h1>
+  <ul class="news-list">
     <li v-for="post in posts" :key="post.id">{{post.title}}</li>
   </ul>
   
@@ -23,4 +23,12 @@
 
     }
 </script>
-<style></style>
+<style>
+.news-component ul{
+     padding-left:0px;
+    list-style: none;
+}
+.news-component ul li{
+    list-style: none;
+}
+</style>
