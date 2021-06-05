@@ -7,6 +7,9 @@
 const { default: axios } = require('axios');
 
 require('./bootstrap');
+// import Vuetify from '../plugins/vuetify';
+import Vue from 'vue';
+import Vuetify from '../plugins/vuetify'; // path to vuetify export
 
 window.Vue = require('vue').default;
 window.axios = require('axios');
@@ -36,6 +39,7 @@ Vue.component('sidebar-component', require('./components/SidebarComponent.vue').
  */
 
 const app = new Vue({
+    vuetify: Vuetify,
     el: '#app'
    
    

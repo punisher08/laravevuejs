@@ -1,5 +1,8 @@
 <template>
     <div class="sidebar">
+        <v-btn block>
+    Block Button
+  </v-btn>
        <ul>
            <li><i class="fas fa-home fa-2x"></i><span>Home</span></li>
            <li><i class="fas fa-newspaper fa-2x"></i><span>News</span></li>

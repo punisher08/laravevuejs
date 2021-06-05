@@ -2,7 +2,7 @@
   <div class="news-component">
   <h1>Crypto News</h1>
   <ul class="news-list">
-    <li v-for="post in posts" :key="post.id">{{post.title}}</li>
+    <li v-for="post in posts" :key="post.id">News Title: {{post.title}}</li>
   </ul>
   
   </div>
