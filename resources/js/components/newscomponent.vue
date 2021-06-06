@@ -40,7 +40,7 @@
       axios.get('https://jsonplaceholder.typicode.com/todos').then(response => this.posts = response.data)
         .catch(
           this.posts = [{title:'No Records found'}]
-          ).finally(() => console.log('data loading'))
+          ).finally(() => console.log('Finally Data loading'))
 
     }
   }

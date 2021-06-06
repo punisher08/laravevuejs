@@ -2,7 +2,7 @@
   <v-card
     class="mx-auto"
     height="100%"
-    width="300"
+    width="auto"
   >
     <v-navigation-drawer
       absolute
@@ -12,35 +12,44 @@
       permanent
       height="100%"
     >
-      <v-list>
-        <v-list-item
-          v-for="([icon, text], i) in items"
-          :key="i"
+      <v-list-item
+          v-for="item in items"
+          :key="item.title"
           link
         >
+     
           <v-list-item-icon>
-            <v-icon>{{ icon }}</v-icon>
+            <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title>{{ text }}</v-list-item-title>
+                <router-link :to="item.link"><v-list-item-title>{{ item.title }}</v-list-item-title></router-link>
           </v-list-item-content>
+     
+
         </v-list-item>
-      </v-list>
     </v-navigation-drawer>
   </v-card>
+  
 </template>
 
 <script>
  export default {
     data: function(){
       return   {
-        items: [
-        [' mdi-view-dashboard', 'Dashboard'],
-        ['mdi-newspaper', 'News'],
-        ['mdi-clock-start', 'Link-hunt']
-        ]
+        // items:[
+        //  { name:'Dashboard',icon:'mdi-view-dashboard', links:'/dashbard'}
+        // ],
+       items: [
+          { title: 'Dashboard', icon: 'mdi-view-dashboard',link:'/dashboard' },
+          { title: 'News', icon: 'mdi-newspaper',link:'/news'},
+          { title: 'Linkhunt', icon: 'mdi-clock-start',link:'/dashboard' },
+          { title: 'Crud Component', icon: 'mdi-server',link:'/cruds' },
+        ],
       }
+    },
+    mounted(){
+    
     }
   }
 </script>
@@ -49,5 +58,11 @@
 .v-list-item__icon{
   padding-right:10px;
 
+}
+.v-list-item__content > a{
+color:#fff;
+}
+.v-list-item__content > a:hover{
+text-decoration:none;
 }
 </style>

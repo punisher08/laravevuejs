@@ -1,6 +1,12 @@
 .sidebar-section{
     padding: 0 !important;
-    /* padding-top: 0px !important;
-    padding-bottom: 0px !important; */
     min-height: 600px;
 }
+.main-logo{
+    height:28px;
+}
+@media only screen and (max-width: 600px) {
+    .sidebar-section{
+        display: none;
+    }
+  }

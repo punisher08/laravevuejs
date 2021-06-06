@@ -15,7 +15,12 @@ class CrudsController extends Controller
     public function index()
     {
         //
-        return response(Cruds::all()->jsonSerialize(), Response::HTTP_OK);
+        $cruds_data = Cruds::all();
+        return response()->json(
+            [
+                'data' => $cruds_data
+            ]
+        );
     }
 
     /**
@@ -25,13 +30,7 @@ class CrudsController extends Controller
      */
     public function create(Generator $faker)
     {
-        //
-        $crud = new Cruds();
-        $crud->name = $faker->lexify('????????');
-        $crud->color = $faker->boolean ? 'red' : 'green';
-        $crud->save();
-      
-        return response($crud->jsonSerialize(), Response::HTTP_CREATED
+
     }
 
     /**
@@ -43,6 +42,14 @@ class CrudsController extends Controller
     public function store(Request $request)
     {
         //
+        $createdCruds = request()->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+        $createdCruds = Cruds::create(request()->all());
+        return response()->json([
+            'data' => $createdCruds
+        ]);
     }
 
     /**
@@ -76,12 +83,8 @@ class CrudsController extends Controller
      */
     public function update(Request $request, Cruds $cruds)
     {
-        //
-        $crud = Crud::findOrFail($cruds);
-        $crud->color = $request->color;
-        $crud->save();
-      
-        return response(null, Response::HTTP_OK);
+        
+    
     }
 
     /**

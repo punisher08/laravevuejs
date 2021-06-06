@@ -30,9 +30,7 @@
           </v-card>
         </v-col>
       </v-row>
-      <v-row>
-      
-      </v-row>
+  
 
   </v-card>
  </div>

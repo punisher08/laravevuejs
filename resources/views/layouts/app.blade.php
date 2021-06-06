@@ -28,7 +28,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img class="main-logo" src="{{ asset('images/logo.png') }}">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -82,15 +82,6 @@
         <main class="d-flex">
             @yield('content')
         </main>
-        {{-- Footer --}}
-        @if (Auth::check())
-            <footer class="footer">
-                <footer-component></footer-component>
-            </footer>
-        @endif
-
-        
-        
     </div>
 </body>
 </html>

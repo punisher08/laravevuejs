@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\NewsController;
+// use App\Http\Controllers\CrudsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/news',[App\Http\Controllers\NewsController::class,'index']);
+Route::get('/cruds',[App\Http\Controllers\CrudsController::class,'index']);
+Route::post('/cruds/store',[App\Http\Controllers\CrudsController::class,'store']);
