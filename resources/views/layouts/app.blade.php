@@ -82,10 +82,11 @@
         <main class="d-flex">
             @yield('content')
         </main>
+        {{-- Footer --}}
         @if (Auth::check())
-        <footer class="footer">
-            <footer-component></footer-component>
-        </footer>
+            <footer class="footer">
+                <footer-component></footer-component>
+            </footer>
         @endif
 
         

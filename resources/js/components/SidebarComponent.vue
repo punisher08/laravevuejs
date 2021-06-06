@@ -33,16 +33,21 @@
 
 <script>
  export default {
-    data: () => ({
-      items: [
-        ['mdi-email', 'News'],
-        ['mdi-account-supervisor-circle', 'Media'],
-        ['mdi-clock-start', 'Link-hunt'],
-      ],
-    }),
+    data: function(){
+      return   {
+        items: [
+        [' mdi-view-dashboard', 'Dashboard'],
+        ['mdi-newspaper', 'News'],
+        ['mdi-clock-start', 'Link-hunt']
+        ]
+      }
+    }
   }
 </script>
 
 <style scoped>
+.v-list-item__icon{
+  padding-right:10px;
 
+}
 </style>

@@ -10,26 +10,20 @@ require('./bootstrap');
 // import Vuetify from '../plugins/vuetify';
 import Vue from 'vue';
 import Vuetify from '../plugins/vuetify'; // path to vuetify export
-
+import VueRouter from '../plugins/vue-router'; // path to vue-router export
 window.Vue = require('vue').default;
 window.axios = require('axios');
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
+//Components using default
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('home-component', require('./components/Home.vue').default);
 Vue.component('news-component', require('./components/newscomponent.vue').default);
 Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
 Vue.component('footer-component', require('./components/Footer.vue').default);
+// Vue.component('dashboard-component', require('./components/Dashboard.vue').default);
+//Components using import
+import Dashboard from './components/Dashboard';
 
 
 
@@ -41,7 +35,12 @@ Vue.component('footer-component', require('./components/Footer.vue').default);
 
 const app = new Vue({
     vuetify: Vuetify,
-    el: '#app'
-   
-   
+    vuerouter: VueRouter,
+    el: '#app',
+    components:{
+        Dashboard
+    },
+    mounted(){
+        console.log(VueRouter)
+    }
 });
