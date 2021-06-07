@@ -46,6 +46,7 @@ class CrudsController extends Controller
             'name' => 'required',
             'email' => 'required',
         ]);
+     
         $createdCruds = Cruds::create(request()->all());
         return response()->json([
             'data' => $createdCruds
@@ -93,11 +94,17 @@ class CrudsController extends Controller
      * @param  \App\Models\Cruds  $cruds
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cruds $cruds)
+    public function destroy($id)
     {
         //
-        Crud::destroy($cruds);
+        $deleted = Cruds::destroy($id);
+        $cruds_data = Cruds::all();
+        return response()->json(
+            [
+                'data' => $cruds_data
+            ]
+        );
 
-        return response(null, Response::HTTP_OK);
+        
     }
 }

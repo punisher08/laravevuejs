@@ -2,6 +2,7 @@
 
 @section('content')
 <section class="sidebar-section py-4 col-lg-2 col-md-2">
+    
     <sidebar-component></sidebar-component> 
 </section>
 

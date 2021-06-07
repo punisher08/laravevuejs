@@ -19,6 +19,7 @@
       :rules="emailRules"
       label="E-mail"
       required
+     
     ></v-text-field>
 
     <v-text-field
@@ -40,8 +41,8 @@
 <script>
 
   export default {
-   
     data: () => ({
+      // data:[],
       valid: true,
       name: '',
       email:'',
@@ -75,9 +76,13 @@
           email:this.email,
           website:this.website
         }
-          axios.post("http://127.0.0.1:8000/api/cruds/store", crudsdata)
-          .then(response => console.log(response));
-      }
+          axios.post("http://127.0.0.1:8000/api/cruds/store", crudsdata);
+          this.$emit("AddChange",crudsdata);
+          this.name = '';
+          this.email = '';
+          this.website = '';
+
+      },
     },
   }
 </script>

@@ -21,3 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/news',[App\Http\Controllers\NewsController::class,'index']);
 Route::get('/cruds',[App\Http\Controllers\CrudsController::class,'index']);
 Route::post('/cruds/store',[App\Http\Controllers\CrudsController::class,'store']);
+Route::delete('/delete/{id}',[App\Http\Controllers\CrudsController::class,'destroy']);

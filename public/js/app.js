@@ -2137,9 +2137,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      // data:[],
       valid: true,
       name: '',
       email: '',
@@ -2174,9 +2176,11 @@ __webpack_require__.r(__webpack_exports__);
         email: this.email,
         website: this.website
       };
-      axios.post("http://127.0.0.1:8000/api/cruds/store", crudsdata).then(function (response) {
-        return console.log(response);
-      });
+      axios.post("http://127.0.0.1:8000/api/cruds/store", crudsdata);
+      this.$emit("AddChange", crudsdata);
+      this.name = '';
+      this.email = '';
+      this.website = '';
     }
   }
 });
