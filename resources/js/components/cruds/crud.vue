@@ -1,6 +1,7 @@
 <template>
-    <div class="cruds d-flex">
-        <v-row>
+    <div class="cruds">
+      <div class=" d-flex">
+        <v-row
             <v-col dense  class="col-lg-7">  
                 <v-card class="p-3">
                   <h4>Crud Component List</h4>
@@ -23,16 +24,12 @@
                     </template>
                       <template v-slot:item.actions="{ item }">
                       <div class="d-flex">
-                        <v-icon
-                        small
-                        class="mr-2"
-                        @click="editItem(item)"
-                      >
-                        mdi-pencil
-                      </v-icon>
+                        
+                      <EditForm :name="{item}"></EditForm>
+                   
                       <v-icon
                         small
-                        @click="deleteItem(item)"
+                        @click="deleteItem(item,$event)"
                       >
                         mdi-delete
                       </v-icon>
@@ -47,49 +44,32 @@
               <CreateForm @AddChange="Logchange($event)"></CreateForm>
               </v-card>
             </v-col>
-          
         </v-row>
-        
+      </div>
+      
     </div>
 </template>
 
 <script>
 import CreateForm from './create';
+import EditForm from './edit';
     export default {
    components:{
-    CreateForm
+    CreateForm,
+    EditForm,
    },
     mounted: function(){
         axios.get('http://127.0.0.1:8000/api/cruds').then(response => this.data = response.data.data);
     },
     data () {
       return {
+        dialog:false,
         name:'',
         email:'',
         website:'',
         search:'',
         data:[],
         checkbox: false,
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%',
-            glutenfree: true,
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%',
-            glutenfree: false,
-          },
-        ],
       }
     },
     computed: {
@@ -111,15 +91,21 @@ import CreateForm from './create';
       },
     },
     methods: {
+      CloseDialog(){
+        this.dialog = true;
+        console.log(this.dialog);
+      },
       deleteItem(item){
-        axios.delete('http://127.0.0.1:8000/api/delete/'+item.id)
-        this.data.splice(this.data.indexOf(item), 1);
-          
-       
+        axios.delete('http://127.0.0.1:8000/api/delete/'+item.id);
+        this.data.splice(this.data.indexOf(item), 1);   
       },
-       editItem(item){
-        console.log(item.id);
-      },
+      //  editItem(item,event){
+      //   event.preventDefault();
+      //   this.dialog = true;
+      //   console.log('test');
+
+      //   // axios.get('http://127.0.0.1:8000/api/edit/'+item.id).then(response => console.log(response))
+      // },
       Logchange: function($event){        
         this.data.push({'name':$event.name,'email':$event.email,'website':$event.website});
       },

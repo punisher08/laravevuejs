@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router'
-import Dashboard from './components/Dashboard'; // path to vue-router export
+import Dashboard from './components/pages/Dashboard'; // path to vue-router export
 
 Vue.use(VueRouter)
 
@@ -13,13 +13,18 @@ const routes = [
     {
       path: '/news',
       name: 'News',
-      component: () => import(/* webpackChunkName: "about" */ './components/newscomponent.vue')
+      component: () => import('./components/news/NewsComponent.vue')
     },
     {
       path: '/cruds',
       name: 'Cruds',
-      component: () => import(/* webpackChunkName: "about" */ './components/cruds/crud.vue')
-    }
+      component: () => import('./components/cruds/crud.vue')
+    },
+    {
+      path: '/edit',
+      name: 'Edit',
+      component: () => import('./components/cruds/edit.vue')
+    },
   ]
   const router = new VueRouter({
     mode: 'history',

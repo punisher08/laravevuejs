@@ -41,7 +41,6 @@
         .catch(
           this.posts = [{title:'No Records found'}]
           ).finally(() => console.log('Finally Data loading'))
-
     }
   }
 </script>

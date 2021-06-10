@@ -12,9 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create */ "./resources/js/components/cruds/create.vue");
-//
-//
-//
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./resources/js/components/cruds/edit.vue");
 //
 //
 //
@@ -68,9 +66,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    CreateForm: _create__WEBPACK_IMPORTED_MODULE_0__.default
+    CreateForm: _create__WEBPACK_IMPORTED_MODULE_0__.default,
+    EditForm: _edit__WEBPACK_IMPORTED_MODULE_1__.default
   },
   mounted: function mounted() {
     var _this = this;
@@ -81,29 +81,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      dialog: false,
       name: '',
       email: '',
       website: '',
       search: '',
       data: [],
-      checkbox: false,
-      desserts: [{
-        name: 'Frozen Yogurt',
-        calories: 159,
-        fat: 6.0,
-        carbs: 24,
-        protein: 4.0,
-        iron: '1%',
-        glutenfree: true
-      }, {
-        name: 'Ice cream sandwich',
-        calories: 237,
-        fat: 9.0,
-        carbs: 37,
-        protein: 4.3,
-        iron: '1%',
-        glutenfree: false
-      }]
+      checkbox: false
     };
   },
   computed: {
@@ -127,13 +111,20 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    CloseDialog: function CloseDialog() {
+      this.dialog = true;
+      console.log(this.dialog);
+    },
     deleteItem: function deleteItem(item) {
       axios["delete"]('http://127.0.0.1:8000/api/delete/' + item.id);
       this.data.splice(this.data.indexOf(item), 1);
     },
-    editItem: function editItem(item) {
-      console.log(item.id);
-    },
+    //  editItem(item,event){
+    //   event.preventDefault();
+    //   this.dialog = true;
+    //   console.log('test');
+    //   // axios.get('http://127.0.0.1:8000/api/edit/'+item.id).then(response => console.log(response))
+    // },
     Logchange: function Logchange($event) {
       this.data.push({
         'name': $event.name,
@@ -240,142 +231,121 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "cruds d-flex" },
-    [
-      _c(
-        "v-row",
-        [
-          _c(
-            "v-col",
-            { staticClass: "col-lg-7", attrs: { dense: "" } },
-            [
-              _c("v-card", { staticClass: "p-3" }, [
-                _c("h4", [_vm._v("Crud Component List")]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "crud-datas" },
-                  [
-                    _c("v-data-table", {
-                      staticClass: "elevation-1",
-                      attrs: {
-                        headers: _vm.headers,
-                        items: _vm.data,
-                        "item-key": "id",
-                        search: _vm.search,
-                        "custom-filter": _vm.filterOnlyCapsText
-                      },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "top",
-                          fn: function() {
-                            return [
-                              _c("v-text-field", {
-                                staticClass: "mx-4",
-                                attrs: {
-                                  label: "Search Title",
-                                  color: "black"
-                                },
-                                model: {
-                                  value: _vm.search,
-                                  callback: function($$v) {
-                                    _vm.search = $$v
-                                  },
-                                  expression: "search"
-                                }
-                              })
-                            ]
-                          },
-                          proxy: true
-                        },
-                        {
-                          key: "item.actions",
-                          fn: function(ref) {
-                            var item = ref.item
-                            return [
-                              _c(
-                                "div",
-                                { staticClass: "d-flex" },
-                                [
-                                  _c(
-                                    "v-icon",
-                                    {
-                                      staticClass: "mr-2",
-                                      attrs: { small: "" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.editItem(item)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                    mdi-pencil\n                  "
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-icon",
-                                    {
-                                      attrs: { small: "" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.deleteItem(item)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                    mdi-delete\n                  "
-                                      )
-                                    ]
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          }
-                        }
-                      ])
-                    })
-                  ],
-                  1
-                )
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { staticClass: "col-lg-5" },
-            [
+  return _c("div", { staticClass: "cruds" }, [
+    _c(
+      "div",
+      { staticClass: " d-flex" },
+      [
+        _c(
+          "v-col",
+          { staticClass: "col-lg-7", attrs: { dense: "" } },
+          [
+            _c("v-card", { staticClass: "p-3" }, [
+              _c("h4", [_vm._v("Crud Component List")]),
+              _vm._v(" "),
               _c(
-                "v-card",
-                { staticClass: "p-3" },
+                "div",
+                { staticClass: "crud-datas" },
                 [
-                  _c("CreateForm", {
-                    on: {
-                      AddChange: function($event) {
-                        return _vm.Logchange($event)
+                  _c("v-data-table", {
+                    staticClass: "elevation-1",
+                    attrs: {
+                      headers: _vm.headers,
+                      items: _vm.data,
+                      "item-key": "id",
+                      search: _vm.search,
+                      "custom-filter": _vm.filterOnlyCapsText
+                    },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "top",
+                        fn: function() {
+                          return [
+                            _c("v-text-field", {
+                              staticClass: "mx-4",
+                              attrs: { label: "Search Title", color: "black" },
+                              model: {
+                                value: _vm.search,
+                                callback: function($$v) {
+                                  _vm.search = $$v
+                                },
+                                expression: "search"
+                              }
+                            })
+                          ]
+                        },
+                        proxy: true
+                      },
+                      {
+                        key: "item.actions",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c(
+                              "div",
+                              { staticClass: "d-flex" },
+                              [
+                                _c("EditForm", {
+                                  attrs: { name: { item: item } }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "v-icon",
+                                  {
+                                    attrs: { small: "" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteItem(item, $event)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                    mdi-delete\n                  "
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ]
+                        }
                       }
-                    }
+                    ])
                   })
                 ],
                 1
               )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "v-col",
+          { staticClass: "col-lg-5" },
+          [
+            _c(
+              "v-card",
+              { staticClass: "p-3" },
+              [
+                _c("CreateForm", {
+                  on: {
+                    AddChange: function($event) {
+                      return _vm.Logchange($event)
+                    }
+                  }
+                })
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -426,8 +396,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/VCol.js");
 /* harmony import */ var vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VDataTable */ "./node_modules/vuetify/lib/components/VDataTable/VDataTable.js");
 /* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/VIcon.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/VRow.js");
-/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/VTextField.js");
+/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/VTextField.js");
 
 
 
@@ -454,8 +423,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 
 
-
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__.default,VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__.default,VDataTable: vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_7__.default,VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_8__.default,VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__.default,VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_10__.default})
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__.default,VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__.default,VDataTable: vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_7__.default,VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_8__.default,VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_9__.default})
 
 
 /* hot reload */

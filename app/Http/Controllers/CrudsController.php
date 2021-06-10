@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cruds;
 use Illuminate\Http\Request;
+use DB;
 
 class CrudsController extends Controller
 {
@@ -70,9 +71,16 @@ class CrudsController extends Controller
      * @param  \App\Models\Cruds  $cruds
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cruds $cruds)
+    public function edit($id)
     {
         //
+        $item = Cruds::find($id);
+        return response()->json(
+            [
+                'item' => $item
+            ]
+        );
+
     }
 
     /**
@@ -82,9 +90,25 @@ class CrudsController extends Controller
      * @param  \App\Models\Cruds  $cruds
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cruds $cruds)
+    public function update(Request $request, $id)
     {
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $website = $request->input('website');
+
+    
+    
+    //    $createdCruds = Cruds::update(request()->all());
+    //    $createdCruds->save();
+       $data = array('name' => $name, 'email' => $email, 'website' => $website);
+       DB::update('update cruds set name = ?,email = ? , website = ? where id = ?'
+       ,[$name,$email,$website,$id]);
+   
+
+       return response()->json([
+        'data' => $data
         
+    ]);
     
     }
 

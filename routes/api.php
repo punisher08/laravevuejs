@@ -22,3 +22,5 @@ Route::get('/news',[App\Http\Controllers\NewsController::class,'index']);
 Route::get('/cruds',[App\Http\Controllers\CrudsController::class,'index']);
 Route::post('/cruds/store',[App\Http\Controllers\CrudsController::class,'store']);
 Route::delete('/delete/{id}',[App\Http\Controllers\CrudsController::class,'destroy']);
+Route::get('/edit/{id}',[App\Http\Controllers\CrudsController::class,'edit']);
+Route::post('/update/{id}',[App\Http\Controllers\CrudsController::class,'update']);
